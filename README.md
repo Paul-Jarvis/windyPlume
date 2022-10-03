@@ -56,4 +56,6 @@ Paul Jarvis
 Snee, et al. (in prep) - Image analysis of volcanic plumes: A simple calibration
 tool to correct for the effect of wind
 
-## License - This project is licensed under the MIT license
+## License 
+
+This project is licensed under the MIT license
