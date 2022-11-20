@@ -2,6 +2,7 @@ function [upperUncert_x,lowerUncert_x,upperUncert_z,lowerUncert_z,dist,height] =
 
 %% Cal for av values - av FOV 18, av wind
         [dist,height] = Calibrate_allTogether(vent_x,vent_z,x_select,y_select,cam,Ori,P_vent);
+        %pause
 
 %% Cal camera resolution
         % horizontal resolution

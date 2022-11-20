@@ -163,7 +163,7 @@ end
     % - upperUncert_x == the maximum differne in the horizontal poisiton/s with respect the the camera of the point/s of interest
     [upperUncert_x,lowerUncert_x,upperUncert_z,lowerUncert_z,dist,height] = getAllUncertinity(vent_x,vent_z,x_point,y_point,cam,Ori,P_vent,min_FOVH,max_FOVH,min_Ori,max_Ori);
      
-%% Need to output data    
+%% Need to output data
 writematrix(height, outFile);
 
 

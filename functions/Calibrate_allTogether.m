@@ -16,13 +16,13 @@ function [dist,height] = Calibrate_allTogether(vent_x,vent_z,x_select,y_select,c
             P_pixel = [x_select(j) y_select(j)];                           % Create vector of the x and y pixel coordinate of interest 
             
             [diff_z, diff_x] = calibrate(cam,P_pixel);                     % Run calibration function, diff_z and diff_h are the height and horizontal difference from the camera
-                
            %% Tansform calibration due to wind 
             
             distanceFromVent_P1 = abs(diff_x - vent_x);                    % Work out the absolute horizontal distance from the vent and P1
             
             %%% Adjusted calibrated point because of wind %%%
             [x,y,z,lambda,w_tilde] = calibrateWind(Ori,cam,distanceFromVent_P1,P_vent,P_pixel);
+            
             
             %%% Determine omega_prime %%%
             if cam.oriCentreLine + 180 < 360

@@ -57,15 +57,13 @@ function[x,y,z,lambda,w_tilde] = calibrateWind(Ori,cam,distanceFromVent,P_vent,P
         h = (b * sind(lambda)) / cosd(alpha - (FOV_H/2) - lambda);
         
         if P_pixel(1) >= P_vent(1)
-            x = h * sind((FOV_H/2) - alpha);
-            y = -h * cosd((FOV_H/2) - alpha);
-            z = y * tand(di);
-            disp('Option 1:a')
-        elseif P_pixel(1) < P_vent(1)
             x = -h * sind((FOV_H/2) - alpha);
             y = h * cosd((FOV_H/2) - alpha);
             z = y * tand(di);
-            disp('Option 1:b')
+        elseif P_pixel(1) < P_vent(1)
+            x = h * sind((FOV_H/2) - alpha);
+            y = -h * cosd((FOV_H/2) - alpha);
+            z = y * tand(di);
         end
 
     elseif (0 < w_tilde) && (w_tilde <= 90) || (180 < w_tilde) && (w_tilde < 270)
@@ -75,12 +73,10 @@ function[x,y,z,lambda,w_tilde] = calibrateWind(Ori,cam,distanceFromVent,P_vent,P
             x = -h * sind((FOV_H/2) - alpha);
             y = h * cosd((FOV_H/2) - alpha);
             z = y * tand(di);
-            disp('Option 2:a')
         elseif P_pixel(1) < P_vent(1)
             x = h * sind((FOV_H/2) - alpha);
             y = -h * cosd((FOV_H/2) - alpha);
             z = y * tand(di);
-            disp('Option 2:b')
         end
     else
         disp('Error with choosing based on relationship between wind orientation and centreline orientation')
