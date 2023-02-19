@@ -61,6 +61,11 @@ exampleData/Sabancaya/wind.nc - NetCDF file containing geopotential data above
 				wind calibration. Data downloaded from
 				https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels?tab=overview
 				
+## Pre-requisites
+
+windyPlume has been tested on 2019 and later versions of Matlab. It may work for
+earlier versions but has not been tested.
+
 ## Issues
 
 Reporting of issues and/or contacting the authors can be achieved through the
