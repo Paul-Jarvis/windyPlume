@@ -58,11 +58,11 @@ function[x,y,z,lambda,w_tilde] = calibrateWind(Ori,cam,distanceFromVent,P_vent,P
         
         if P_pixel(1) >= P_vent(1)
             x = -h * sind((FOV_H/2) - alpha);
-            y = h * cosd((FOV_H/2) - alpha);
+            y = -h * cosd((FOV_H/2) - alpha);
             z = y * tand(di);
         elseif P_pixel(1) < P_vent(1)
             x = h * sind((FOV_H/2) - alpha);
-            y = -h * cosd((FOV_H/2) - alpha);
+            y = h * cosd((FOV_H/2) - alpha);
             z = y * tand(di);
         end
 

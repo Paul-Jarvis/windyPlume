@@ -44,16 +44,16 @@ geopotFilename = 'E:\Sabancaya_videos\weather\geopot.nc';
 topPoint_Wind = 6900; % Height (in m a.s.l) which defines the upper limit 
                       %of height range to claulate the wind orientation over
 
-ori = 15.0;
+ori = 330.0;
 
 %%% Set camera properties %%%
 cam.pixel_width   = 320;    % Width in pixels of image frame
 cam.pixel_height  = 240;    % Height in pixels of image frame
 cam.FOV_H         = 56;     % Horizontal field of view of the camera
-cam.z_cam         = 720; % Height of the camera in m a.s.l
-cam.oriCentreLine = 337;    % Orientation of the camera to the centre of 
+cam.z_cam         = 5025; % Height of the camera in m a.s.l
+cam.oriCentreLine = 352;    % Orientation of the camera to the centre of 
                             %the image frame
-cam.dist2plane    = 14350;  % Distance between the camera and the plane for 
+cam.dist2plane    = 4250;  % Distance between the camera and the plane for 
                             %which points will be calibrated on
 
 min_FOVH = 56; % Minimum value of the horizontal field of view of the 
@@ -61,7 +61,7 @@ min_FOVH = 56; % Minimum value of the horizontal field of view of the
 max_FOVH = 56; % Maximum value of the horizontal field of view of the 
                     %camera (upper bound of the uncertinity)
     
-cam.incl = 26.5; % Inclination of the camera in degrees (put as -100 if 
+cam.incl = 25.5; % Inclination of the camera in degrees (put as -100 if 
                  %unknown)
     
 %%% Set pixels to be calibrated
@@ -88,12 +88,12 @@ vent.centre_pixel_height = 447;   % Pixel value in the y direction of a
     
 %%% Set vent properties
 ventKnown = 'y';    %If 'n', needs to be determined
-x_pixel_vent = 260; %Pixel coordinates of vent. Don't need to be entered 
+x_pixel_vent = 100; %Pixel coordinates of vent. Don't need to be entered 
                     %if ventKnown = 'n'
-y_pixel_vent = 210;
-ventAlt = 2191;     %Altitude of vent in m above sea level
-ventLat = 37.74604;
-ventLong = 15.0198;
+y_pixel_vent = 200;
+ventAlt = 5960;     %Altitude of vent in m above sea level
+ventLat = -15.787412;
+ventLong = -71.855991;
     
 %%% Outfile
 outFile = 'C:\Users\paulj\localDocuments\windyPlume\testData\NicolosiThermal.dat';
