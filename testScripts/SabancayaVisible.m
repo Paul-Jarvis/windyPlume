@@ -25,43 +25,43 @@ yCol = 8; %Column of data file containing y-coordinate of pixels
 
 %%% Set filename of the image frame %%%
 %THIS IS OPTIONAL - YOU MAY NOT HAVE ONE
-imageFrame = 'E:\Sabancaya_videos\IR\processed_data\20180808T1123\output\frames\1.png';
+imageFrame = 'D:\sabancayaPlumes\Analysis\results\P15\P15_Processed\P15-0197.png';
     
 %%% Set weather data %%%
 %WEATHER CAN EITHER BE LOOKED UP FROM A WEATHER FILE, OR IF IT IS KNOWN,
 %CAN BE ENTERED DIRECTLY
-ismetFile = 'no';
+ismetFile = 'yes';
 % Vector of year, month, day, hour, minute, second of time at which to 
 % calibrate
-b = [2018 08 08 16 26 00]; 
+b = [2018 07 31 14 47 00]; 
 
 %Names of netCDF files containing wind and geopotential data. If files are
 %the same, give same name for both.
 
-windFilename = 'E:\Sabancaya_videos\weather\wind.nc'; 
-geopotFilename = 'E:\Sabancaya_videos\weather\geopot.nc';
+windFilename = 'D:\sabancayaPlumes\Analysis\wind.nc'; 
+geopotFilename = 'D:\sabancayaPlumes\Analysis\geopot.nc';
 
-topPoint_Wind = 6900; % Height (in m a.s.l) which defines the upper limit 
+topPoint_Wind = 10000; % Height (in m a.s.l) which defines the upper limit 
                       %of height range to claulate the wind orientation over
 
-ori = -105.0;
+ori = 350.0;
 
 %%% Set camera properties %%%
-cam.pixel_width   = 320;    % Width in pixels of image frame
-cam.pixel_height  = 240;    % Height in pixels of image frame
-cam.FOV_H         = 56;     % Horizontal field of view of the camera
-cam.z_cam         = 720; % Height of the camera in m a.s.l
-cam.oriCentreLine = 337;    % Orientation of the camera to the centre of 
+cam.pixel_width   = 1920;    % Width in pixels of image frame
+cam.pixel_height  = 1080;    % Height in pixels of image frame
+cam.FOV_H         = 31.9;     % Horizontal field of view of the camera
+cam.z_cam         = 4561; % Height of the camera in m a.s.l
+cam.oriCentreLine = 350;    % Orientation of the camera to the centre of 
                             %the image frame
-cam.dist2plane    = 14350;  % Distance between the camera and the plane for 
+cam.dist2plane    = 7200;  % Distance between the camera and the plane for 
                             %which points will be calibrated on
 
-min_FOVH = 56; % Minimum value of the horizontal field of view of the 
+min_FOVH = 31.9; % Minimum value of the horizontal field of view of the 
                     %camera (lower bound of the uncertinity)
-max_FOVH = 56; % Maximum value of the horizontal field of view of the 
+max_FOVH = 31.9; % Maximum value of the horizontal field of view of the 
                     %camera (upper bound of the uncertinity)
     
-cam.incl = 26.5; % Inclination of the camera in degrees (put as -100 if 
+cam.incl = 14; % Inclination of the camera in degrees (put as -100 if 
                  %unknown)
     
 %%% Set pixels to be calibrated
@@ -88,16 +88,16 @@ vent.centre_pixel_height = 447;   % Pixel value in the y direction of a
     
 %%% Set vent properties
 ventKnown = 'y';    %If 'n', needs to be determined
-x_pixel_vent = 260; %Pixel coordinates of vent. Don't need to be entered 
+x_pixel_vent = 249; %Pixel coordinates of vent. Don't need to be entered 
                     %if ventKnown = 'n'
-y_pixel_vent = 210;
-ventAlt = 2191;     %Altitude of vent in m above sea level
-ventLat = 37.74604;
-ventLong = 15.0198;
+y_pixel_vent = 738;
+ventAlt = 5960;     %Altitude of vent in m above sea level
+ventLat = -15.75;
+ventLong = -71.75;
     
 %%% Outfile
-outFile = 'C:\Users\paulj\localDocuments\windyPlume\testData\NicolosiThermal.dat';
-outfig = 'C:\Users\paulj\localDocuments\windyPlume\testData\NicolosiThermal.png';    
+outFile = 'C:\Users\paulj\localDocuments\windyPlume\testData\SabancayaVisible.dat';
+outfig = 'C:\Users\paulj\localDocuments\windyPlume\testData\SabancayaVisible.png';    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Calculate other camera properties
 
@@ -203,11 +203,15 @@ end
 xCoords = linspace(1, cam.pixel_width, cam.pixel_width);
 yCoords = linspace(1, cam.pixel_height, cam.pixel_height);
 
-imagesc(xCoords, yCoords, flipud(heightMat))
-cbar = colorbar;
-xlabel('Horizontal position /pixel')
-ylabel('Vertical position /pixel')
-cbar.Label.String = 'Altitude /m';
+baseIm = imread(imageFrame);
+
+%imagesc(xCoords, yCoords, flipud(heightMat))
+imshow(baseIm);
+%cbar = colorbar;
+%xlabel('Horizontal position /pixel')
+%ylabel('Vertical position /pixel')
+%cbar.Label.String = 'Altitude /m';
 hold on
-contour(xCoords, yCoords, flipud(heightMat), [2000 4000 6000 8000 10000 12000 14000 16000], 'LineColor', 'w', 'ShowText', 'on')
+[C, h] = contour(xCoords, yCoords, flipud(heightMat), [5000 5500 6000 6500 7000 7500 8000], 'LineColor', 'r', 'ShowText', 'on');
+clabel(C, h, 'Color', 'red', 'FontWeight', 'bold')
 saveas(gcf, outfig);
