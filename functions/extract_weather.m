@@ -4,7 +4,8 @@ function[netCDF] = extract_weather(windFile,b, geopotFile, vent_lat, ...
 %% read in the netCDF file
 
 z = ncread(geopotFile,'z');
-time = ncread(windFile,'time');
+%time = ncread(windFile,'time');
+time = ncread(windFile,'valid_time');
 %pres = ncread(geopotFile,'level');
 %temp = ncread(filename,'t');
 u = ncread(windFile,'u');
@@ -17,13 +18,15 @@ z = z./9.80665;
 
 %% convert time I want to days after 01/01/1900
 
-start_time = datenum([1900 01 01 0 0 0]);
+%start_time = datenum([1900 01 01 0 0 0]);
+start_time = datenum([1970 01 01 0 0 0]);
 
 end_time = datenum(b);%[year month day hour minute second]); 
 
-time_want = (end_time - start_time)*24;%no of hours after 1900/01/01 00:00:0
+%time_want = (end_time - start_time)*24;%no of hours after 1900/01/01 00:00:0
+time_want = (end_time - start_time)*24*60*60;%no of s after 1970/01/01 00:00:0
 
-time = double(time);
+%time = double(time);
 
 if time_want > time(end) || time_want < time(1)
     disp('error with the selected')
