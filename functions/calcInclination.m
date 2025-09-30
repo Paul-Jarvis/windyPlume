@@ -13,8 +13,10 @@ function [incl] = calcInclination(cam,vent)
     phii = atand((z_ref-z_cam)/(dist_diff));                               % Define angle between
     
     z_refPixel = pixel_height - vent.centre_pixel_height;
-    
-    incl = phii + atand((1 - ((2*z_refPixel)/pixel_height))*tand(FOV_V/2));
-    
+
+    %%COMMENTED OUT LINE IS INCORRECT EXPRESSION, EQUATION 14 IN SNEE ET
+    %%AL. (2023)
+    %incl = phii + atand((1 - ((2*z_refPixel)/pixel_height))*tand(FOV_V/2));
+    incl = FOV_V * (0.5 - z_refPixel / pixel_height) + phii;
 end
 

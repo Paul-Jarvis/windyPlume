@@ -19,7 +19,7 @@ function [dist,height] = Calibrate_allTogether(vent_x,vent_z,x_select,y_select,c
            %% Tansform calibration due to wind 
             
             distanceFromVent_P1 = abs(diff_x - vent_x);                    % Work out the absolute horizontal distance from the vent and P1
-            
+
             %%% Adjusted calibrated point because of wind %%%
             [x,y,z,lambda,w_tilde] = calibrateWind(Ori,cam,distanceFromVent_P1,P_vent,P_pixel);
             
@@ -45,6 +45,7 @@ function [dist,height] = Calibrate_allTogether(vent_x,vent_z,x_select,y_select,c
             
             %%% Determine absolute height of calibrated point of interest %%%
             height(j) = cam.z_cam + diff_z + z;
+
     end
 
 

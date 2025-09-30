@@ -21,7 +21,8 @@ function [diff_z, diff_h] = calibrate(cam,P_pixel)
     diff_z = (dist_diff/2)*(tand(incl - (FOV_V/2) + (i-1)*delta_theta_z) + tand(incl - (FOV_V/2) + (i*delta_theta_z)));
     
 %% Calibrate for length
-    diff_h = (dist_diff/2)*(tand(incl_h - (FOV_H/2) + (j-1)*delta_theta_h) + tand(incl_h - (FOV_H/2) + (j*delta_theta_h)));
+    %diff_h = (dist_diff/2)*(tand(incl_h - (FOV_H/2) + (j-1)*delta_theta_h) + tand(incl_h - (FOV_H/2) + (j*delta_theta_h)));
+    diff_h = (dist_diff/2)*(tand(-(FOV_H/2) + (j-1)*delta_theta_h) + tand(-(FOV_H/2) + (j*delta_theta_h)));
     
     
 end
